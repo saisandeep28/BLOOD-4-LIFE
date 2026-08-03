@@ -1,0 +1,4 @@
+export declare const authLimiter: import("express-rate-limit").RateLimitRequestHandler;
+export declare const searchLimiter: import("express-rate-limit").RateLimitRequestHandler;
+export declare const createRequestLimiter: import("express-rate-limit").RateLimitRequestHandler;
+export declare const apiLimiter: import("express-rate-limit").RateLimitRequestHandler;
