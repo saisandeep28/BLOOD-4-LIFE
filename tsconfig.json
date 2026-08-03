@@ -23,6 +23,22 @@
       "@life-for-all/types": ["./packages/types/src/index.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "hooks/**/*.ts",
+    "hooks/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "src",
+    "apps/api",
+    "modules",
+    "models"
+  ]
 }
