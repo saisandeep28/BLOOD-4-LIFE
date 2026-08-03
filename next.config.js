@@ -5,7 +5,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   webpack: (config) => {
-    config.resolve.alias['@life-for-all/types'] = path.resolve(__dirname, 'packages/types/src/index.ts');
+    config.resolve.alias['@life-for-all/types'] = path.resolve(__dirname, 'types.d.ts');
     return config;
   },
   experimental: {
