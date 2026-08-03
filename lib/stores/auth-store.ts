@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { UserRole } from '@life-for-all/types';
+import { UserRole } from '../types';
 
 interface AuthState {
   user: {
@@ -11,7 +11,6 @@ interface AuthState {
     role: UserRole;
     isVerified: boolean;
     isPhoneVerified?: boolean;
-    // Extended profile fields from registration
     age?: string;
     gender?: string;
     fathersName?: string;
@@ -31,18 +30,20 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       isAuthenticated: false,
       setAuth: (user, token) => {
-        localStorage.setItem('accessToken', token);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('auth_token', token);
+        }
         set({ user, isAuthenticated: true });
       },
       logout: () => {
-        localStorage.removeItem('accessToken');
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('auth_token');
+        }
         set({ user: null, isAuthenticated: false });
       },
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({ user: state.user, isAuthenticated: state.isAuthenticated }),
     }
   )
 );
-
