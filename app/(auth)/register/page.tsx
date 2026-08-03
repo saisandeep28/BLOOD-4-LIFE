@@ -98,7 +98,7 @@ export default function RegisterPage() {
     }
   }, [isAuthenticated, router]);
 
-  const [role, setRole] = useState<'donor' | 'hospital' | 'blood_bank' | null>(null);
+  const [role, setRole] = useState<'donor' | 'blood_bank' | null>(null);
   
   // Donor Multi-step state
   const [donorStep, setDonorStep] = useState<1 | 2>(1);
@@ -299,11 +299,6 @@ export default function RegisterPage() {
             <span className="text-lg font-bold mb-1">Blood Donor or Recipient</span>
             <span className="text-sm text-neutral-500">Donate blood, track your impact, or request blood for yourself or a family member.</span>
           </button>
-          
-          <button onClick={() => setRole('hospital')} className="flex flex-col items-start p-6 border-2 border-border rounded-card hover:border-brand hover:bg-brand/5 transition-all text-left">
-            <span className="text-lg font-bold mb-1">Hospital / Clinic</span>
-            <span className="text-sm text-neutral-500">Manage blood inventory, raise emergency requests, and coordinate with donors.</span>
-          </button>
 
           <button onClick={() => setRole('blood_bank')} className="flex flex-col items-start p-6 border-2 border-border rounded-card hover:border-brand hover:bg-brand/5 transition-all text-left">
             <span className="text-lg font-bold mb-1">Blood Bank</span>
@@ -348,7 +343,7 @@ export default function RegisterPage() {
           </button>
         </div>
         <h2 className="text-3xl font-normal text-brand tracking-tight mb-2 border-b pb-4">
-          {role === 'donor' ? 'Donor Sign-Up' : role === 'hospital' ? 'Register Hospital' : 'Register Blood Bank'}
+          {role === 'donor' ? 'Donor Sign-Up' : 'Register Blood Bank'}
         </h2>
       </div>
 
