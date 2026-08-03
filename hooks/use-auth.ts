@@ -1,5 +1,5 @@
 import { useAuthStore } from '../lib/stores/auth-store';
-import { UserRole } from '@life-for-all/types';
+import { UserRole } from '../lib/types';
 
 export function useAuth() {
   const user = useAuthStore((state) => state.user);
