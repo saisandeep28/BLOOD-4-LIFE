@@ -1,3 +1,4 @@
+// Build cache reset: 2026-07-19T15:16
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
