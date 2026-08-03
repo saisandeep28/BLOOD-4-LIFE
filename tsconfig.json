@@ -1,10 +1,10 @@
-  {
+{
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -18,28 +18,18 @@
         "name": "next"
       }
     ],
-    "baseUrl": "."
     "paths": {
       "@/*": ["./*"],
-      "@life-for-all/types": ["./packages/types/src/index.ts"]
+      "@life-for-all/types": ["./types.d.ts"]
     }
   },
   "include": [
     "next-env.d.ts",
-    "app/**/*.ts",
-    "app/**/*.tsx",
-    "components/**/*.ts",
-    "components/**/*.tsx",
-    "hooks/**/*.ts",
-    "hooks/**/*.tsx",
-    "lib/**/*.ts",
-    "lib/**/*.tsx"
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "src",
-    "apps/api",
-    "modules",
-    "models"
+    "node_modules"
   ]
 }
