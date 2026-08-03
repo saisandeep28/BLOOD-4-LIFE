@@ -121,7 +121,7 @@ export default function WhoCanDonate() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <button
                   onClick={() => setStep('confirm')}
-                  className="bg-[#8b0000] hover:bg-[#6b0000] text-white font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-sm md:text-base cursor-pointer"
+                  className="bg-[#8b0000] hover:bg-[#6b0000] text-[#ffffff] font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-sm md:text-base cursor-pointer"
                 >
                   Check Eligibility
                 </button>
@@ -153,7 +153,7 @@ export default function WhoCanDonate() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <button
                   onClick={() => setStep('quiz')}
-                  className="bg-[#8b0000] hover:bg-[#6b0000] text-white font-bold px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-sm md:text-base cursor-pointer"
+                  className="bg-[#8b0000] hover:bg-[#6b0000] text-[#ffffff] font-bold px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-sm md:text-base cursor-pointer"
                 >
                   Yes
                 </button>
@@ -201,7 +201,7 @@ export default function WhoCanDonate() {
               <div className="flex items-center gap-4 pt-2">
                 <button
                   onClick={() => handleAnswer('yes')}
-                  className="bg-[#8b0000] hover:bg-[#6b0000] text-white font-bold px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-sm md:text-base cursor-pointer min-w-[90px]"
+                  className="bg-[#8b0000] hover:bg-[#6b0000] text-[#ffffff] font-bold px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-sm md:text-base cursor-pointer min-w-[90px]"
                 >
                   Yes
                 </button>
@@ -252,7 +252,7 @@ export default function WhoCanDonate() {
             <div className="pt-4">
               <button
                 onClick={handleRestart}
-                className="bg-[#8b0000] hover:bg-[#6b0000] text-white font-bold px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-sm md:text-base cursor-pointer"
+                className="bg-[#8b0000] hover:bg-[#6b0000] text-[#ffffff] font-bold px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-sm md:text-base cursor-pointer"
               >
                 Start Over
               </button>
@@ -269,119 +269,43 @@ export default function WhoCanDonate() {
   );
 }
 
-// Renders public/human diagram.png PNG photo directly with fluid water wave liquid percentage fill
+// Renders Human Diagram with bright #00a8e8 blue liquid fill using CSS blend mode multiply
 function HumanDiagramPublicMaskGraphic({ percentage }: { percentage: number }) {
-  const imgSrc = "/human%20diagram.png";
-  const fillY = 400 - (400 * (percentage / 100));
+  const fillHeight = Math.min(100, Math.max(0, percentage));
 
   return (
-    <div className="relative w-52 h-[420px] flex items-center justify-center">
-      <svg viewBox="0 0 200 400" className="w-full h-full filter drop-shadow-md" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <style>{`
-            @keyframes naturalWaterFront {
-              0% { transform: translate3d(-180px, 0, 0); }
-              100% { transform: translate3d(0px, 0, 0); }
-            }
-            @keyframes naturalWaterMid {
-              0% { transform: translate3d(0px, 0, 0); }
-              100% { transform: translate3d(-180px, 0, 0); }
-            }
-            @keyframes naturalWaterBack {
-              0% { transform: translate3d(-90px, 0, 0); }
-              50% { transform: translate3d(0px, 3px, 0); }
-              100% { transform: translate3d(-90px, 0, 0); }
-            }
-            .wave-front {
-              animation: naturalWaterFront 4.2s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            }
-            .wave-mid {
-              animation: naturalWaterMid 3.1s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            }
-            .wave-back {
-              animation: naturalWaterBack 5.5s ease-in-out infinite;
-            }
-          `}</style>
+    <div className="relative w-52 h-[380px] flex items-center justify-center mx-auto bg-transparent overflow-hidden">
+      {/* 1. Base Image: White Human Figure Silhouette on Black Background */}
+      <img
+        src="/human diagram.png"
+        alt="Human Diagram Outline"
+        className="absolute inset-0 w-full h-full object-contain p-2"
+        onError={(e) => {
+          const target = e.target as HTMLImageElement;
+          if (!target.dataset.triedFallback) {
+            target.dataset.triedFallback = 'true';
+            target.src = '/human-diagram.png';
+          }
+        }}
+      />
 
-          {/* SVG Matricial Filter: Inverts PNG White BG -> Pure Black (0% mask), Black Body -> Pure White (100% mask) */}
-          <filter id="pngInvertFilter">
-            <feColorMatrix type="matrix" values="-1 0 0 0 1   0 -1 0 0 1   0 0 -1 0 1   0 0 0 1 0" />
-          </filter>
-
-          {/* SVG Mask using actual public/human diagram.png image */}
-          <mask id="exactHumanPngMask" maskUnits="userSpaceOnUse" x="0" y="0" width="200" height="400">
-            <image
-              href={imgSrc}
-              x="0"
-              y="0"
-              width="200"
-              height="400"
-              preserveAspectRatio="xMidYMid meet"
-              filter="url(#pngInvertFilter)"
-            />
-          </mask>
-
-          {/* Premium 3D Liquid Water Gradient */}
-          <linearGradient id="naturalWaterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.9" />
-            <stop offset="25%" stopColor="#3b82f6" stopOpacity="0.98" />
-            <stop offset="100%" stopColor="#1d4ed8" stopOpacity="1" />
-          </linearGradient>
-        </defs>
-
-        {/* 1. Base Unfilled Light Grey Silhouette Body matching public/human diagram.png */}
-        <rect
-          x="0"
-          y="0"
-          width="200"
-          height="400"
-          fill="#e5e7eb"
-          className="dark:fill-neutral-700"
-          mask="url(#exactHumanPngMask)"
+      {/* 2. Rising Bright Electric Blue Liquid Layer - Blended directly onto White Body */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none transition-all duration-700 ease-out z-10"
+        style={{
+          height: `${fillHeight}%`,
+          background: 'linear-gradient(to top, #0077b6 0%, #00a8e8 70%, #38bdf8 100%)',
+          mixBlendMode: 'multiply',
+        }}
+      >
+        {/* Animated Bright Wave Surface */}
+        <div
+          className="absolute top-0 left-0 right-0 h-3 -mt-1.5 opacity-95 animate-pulse shadow-sm"
+          style={{
+            background: 'linear-gradient(to right, #48cae4 0%, #ffffff 50%, #00a8e8 100%)',
+          }}
         />
-
-        {/* 2. Natural Water Flow Liquid Fill rising from feet to head */}
-        {percentage > 0 && (
-          <g mask="url(#exactHumanPngMask)">
-            {/* Main Liquid Column */}
-            <rect
-              x="0"
-              y={fillY}
-              width="200"
-              height={400 - fillY + 10}
-              fill="url(#naturalWaterGradient)"
-              className="transition-all duration-700 ease-in-out"
-            />
-
-            {/* Continuous Water Wave Layers */}
-            <g style={{ transform: `translateY(${fillY}px)` }} className="transition-all duration-700 ease-in-out">
-              {/* Back Deep Wave */}
-              <path
-                d="M -180 0 Q -135 -7, -90 0 T 0 0 T 90 0 T 180 0 T 270 0 T 360 0 L 360 30 L -180 30 Z"
-                fill="#1d4ed8"
-                opacity="0.4"
-                className="wave-back"
-              />
-
-              {/* Mid Water Wave */}
-              <path
-                d="M -180 0 Q -135 6, -90 0 T 0 0 T 90 0 T 180 0 T 270 0 T 360 0 L 360 30 L -180 30 Z"
-                fill="#93c5fd"
-                opacity="0.55"
-                className="wave-mid"
-              />
-
-              {/* Surface Front Wave */}
-              <path
-                d="M -180 0 Q -135 -5, -90 0 T 0 0 T 90 0 T 180 0 T 270 0 T 360 0 L 360 30 L -180 30 Z"
-                fill="#3b82f6"
-                opacity="0.9"
-                className="wave-front"
-              />
-            </g>
-          </g>
-        )}
-      </svg>
+      </div>
     </div>
   );
 }
