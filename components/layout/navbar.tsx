@@ -72,7 +72,6 @@ export function Navbar() {
         
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/donors" prefetch={true} className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Find Donors</Link>
-          <Link href="/hospitals" prefetch={true} className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Hospitals</Link>
           <Link href="/blood-banks" prefetch={true} className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Blood Banks</Link>
           <Link href="/blood-availability" prefetch={true} className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Blood Availability Search</Link>
           <Link href="/about" prefetch={true} className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">About Us</Link>
@@ -163,7 +162,6 @@ export function Navbar() {
         <div className="sm:hidden border-t border-border bg-background px-4 py-6 space-y-4 shadow-lg absolute w-full">
           <nav className="flex flex-col gap-4">
             <Link href="/donors" className="text-base font-medium text-foreground hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Find Donors</Link>
-            <Link href="/hospitals" className="text-base font-medium text-foreground hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Hospitals</Link>
             <Link href="/blood-banks" className="text-base font-medium text-foreground hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Blood Banks</Link>
             <Link href="/blood-availability" className="text-base font-medium text-foreground hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Blood Availability Search</Link>
             <Link href="/about" className="text-base font-medium text-foreground hover:text-brand transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
